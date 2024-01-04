@@ -19,20 +19,25 @@ Print a message:
 "<telephone number> spent the longest time, <total time> seconds, on the phone during 
 September 2016.".
 """
-duration = 0
-index = 0
-for i in range(len(calls)):
-    if int(calls[i][-1]) > duration:
-        index = i
-        duration = int(calls[i][-1])
+call_len = {}
+for call in calls:
+    try:
+        call_len[call[0]] += int(call[-1])
+    except:
+        call_len[call[0]] = 0
+    try:
+        call_len[call[1]] += int(call[-1])
+    except:
+        call_len[call[1]] = 0
     
-print(f"{calls[index][0]}, {calls[index][1]} spent the longest time, {duration} seconds, on the phone during September 2016.")
+Keymax = max(zip(call_len.values(), call_len.keys()))[1]
+print(Keymax)
+print(f"{Keymax} spent the longest time, {call_len[Keymax]} seconds, on the phone during September 2016.")
 
 
 '''
 Output:
-output
-89071 50880, (04546)388977 spent the longest time, 4617 seconds, on the phone during September 2016.
+(080)33251027 spent the longest time, 90346 seconds, on the phone during September 2016.
 '''
 
 '''
